@@ -1,5 +1,13 @@
+.encryptedKey.json
 node_modules
-.idea
+.env
+coverage
+coverage.json
+typechain
+
 #Hardhat files
 cache
 artifacts
+gas-report.txt
+typechain-types
+gas-report.txt 
