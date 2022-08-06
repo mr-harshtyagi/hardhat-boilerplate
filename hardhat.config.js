@@ -1,6 +1,8 @@
 require("dotenv").config()
-const { task } = require("hardhat/config")
+// hardhat.config.js
+require("@openzeppelin/hardhat-upgrades")
 require("@nomicfoundation/hardhat-toolbox")
+const { task } = require("hardhat/config")
 
 /** @type import('hardhat/config').HardhatUserConfig */
 
