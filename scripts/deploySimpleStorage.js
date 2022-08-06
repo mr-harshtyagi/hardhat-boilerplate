@@ -17,7 +17,7 @@ async function main() {
   await upgraded.store(8)
   console.log("Favourite Number :", await upgraded.retrieve())
   console.log("Favourite Number :", await instance.retrieve())
-  // both give same address and are referring to same contract address
+  // both instances are referring to same address where implementation contract exists
 }
 
 main()
