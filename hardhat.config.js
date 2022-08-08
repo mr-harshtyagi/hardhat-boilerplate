@@ -16,6 +16,7 @@ task("accounts", "Prints the list of accounts", async function (taskArgs, hre) {
 
 const RINKEBY_RPC_URL = process.env.RINKEBY_RPC_URL
 const GOERLI_RPC_URL = process.env.RINKEBY_RPC_URL
+const MATIC_RPC_URL = process.env.MATIC_RPC_URL
 const PRIVATE_KEY = process.env.PRIVATE_KEY
 
 module.exports = {
@@ -33,6 +34,10 @@ module.exports = {
       url: GOERLI_RPC_URL,
       accounts: [PRIVATE_KEY],
       chainId: 5,
+    },
+    matic: {
+      url: MATIC_RPC_URL,
+      accounts: [PRIVATE_KEY],
     },
   },
 }
