@@ -1,3 +1,4 @@
+// A test for upgradeable proxies
 const { loadFixture } = require("@nomicfoundation/hardhat-network-helpers")
 const { expect } = require("chai")
 

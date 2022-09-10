@@ -1,3 +1,5 @@
+//This script is to demonstrate upgradable proxy contract deployment
+
 const { ethers, upgrades } = require("hardhat")
 
 async function main() {

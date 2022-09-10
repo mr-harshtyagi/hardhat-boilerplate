@@ -1,5 +1,4 @@
 require("dotenv").config()
-// hardhat.config.js
 require("@openzeppelin/hardhat-upgrades")
 require("@nomicfoundation/hardhat-toolbox")
 const { task } = require("hardhat/config")
@@ -23,7 +22,9 @@ module.exports = {
   solidity: "0.8.9",
   networks: {
     hardhat: {
-      chainId: 1337, // We set 1337 to make interacting with MetaMask simpler
+      forking: {
+        url: MATIC_RPC_URL,
+      },
     },
     rinkeby: {
       url: RINKEBY_RPC_URL,
