@@ -20,7 +20,7 @@ describe("Token contract", function () {
       // We use loadFixture to setup our environment, and then assert that
       // things went well
       const { hardhatToken, owner } = await loadFixture(deployTokenFixture)
-
+      console.log(hardhatToken.address)
       expect(await hardhatToken.owner()).to.equal(owner.address)
     })
 
@@ -33,25 +33,25 @@ describe("Token contract", function () {
 
   describe("Transactions", function () {
     it("Should transfer tokens between accounts", async function () {
-      const { hardhatToken, owner, addr1, addr2 } = await loadFixture(
-        deployTokenFixture
-      )
+      const { hardhatToken, owner, addr1, addr2 } = await loadFixture(deployTokenFixture)
       // Transfer 50 tokens from owner to addr1
-      await expect(
-        hardhatToken.transfer(addr1.address, 50)
-      ).to.changeTokenBalances(hardhatToken, [owner, addr1], [-50, 50])
+      await expect(hardhatToken.transfer(addr1.address, 50)).to.changeTokenBalances(
+        hardhatToken,
+        [owner, addr1],
+        [-50, 50]
+      )
 
       // Transfer 50 tokens from addr1 to addr2
       // We use .connect(signer) to send a transaction from another account
-      await expect(
-        hardhatToken.connect(addr1).transfer(addr2.address, 50)
-      ).to.changeTokenBalances(hardhatToken, [addr1, addr2], [-50, 50])
+      await expect(hardhatToken.connect(addr1).transfer(addr2.address, 50)).to.changeTokenBalances(
+        hardhatToken,
+        [addr1, addr2],
+        [-50, 50]
+      )
     })
 
     it("should emit Transfer events", async function () {
-      const { hardhatToken, owner, addr1, addr2 } = await loadFixture(
-        deployTokenFixture
-      )
+      const { hardhatToken, owner, addr1, addr2 } = await loadFixture(deployTokenFixture)
 
       // Transfer 50 tokens from owner to addr1
       await expect(hardhatToken.transfer(addr1.address, 50))
@@ -66,21 +66,17 @@ describe("Token contract", function () {
     })
 
     it("Should fail if sender doesn't have enough tokens", async function () {
-      const { hardhatToken, owner, addr1 } = await loadFixture(
-        deployTokenFixture
-      )
+      const { hardhatToken, owner, addr1 } = await loadFixture(deployTokenFixture)
       const initialOwnerBalance = await hardhatToken.balanceOf(owner.address)
 
       // Try to send 1 token from addr1 (0 tokens) to owner (1000 tokens).
       // `require` will evaluate false and revert the transaction.
-      await expect(
-        hardhatToken.connect(addr1).transfer(owner.address, 1)
-      ).to.be.revertedWith("Not enough tokens")
+      await expect(hardhatToken.connect(addr1).transfer(owner.address, 1)).to.be.revertedWith(
+        "Not enough tokens"
+      )
 
       // Owner balance shouldn't have changed.
-      expect(await hardhatToken.balanceOf(owner.address)).to.equal(
-        initialOwnerBalance
-      )
+      expect(await hardhatToken.balanceOf(owner.address)).to.equal(initialOwnerBalance)
     })
   })
 })
