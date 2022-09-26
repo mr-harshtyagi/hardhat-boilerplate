@@ -9,10 +9,10 @@ describe("Token contract", function () {
     // const Token = await ethers.getContractFactory("Token")
     // const hardhatToken = await Token.deploy()
     // await hardhatToken.deployed()
-    const hardhatToken = await ethers.getContractAt(
-      "Token",
-      "0x2785951ECFF992eB6A50bb22Ea62db156016887b"
-    )
+    // const hardhatToken = await ethers.getContractAt(
+    //   "Token",
+    //   "0x2785951ECFF992eB6A50bb22Ea62db156016887b"
+    // )
 
     // Fixtures can return anything you consider useful for your tests
     return { hardhatToken, owner, addr1, addr2 }
